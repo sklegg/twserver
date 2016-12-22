@@ -1,4 +1,4 @@
-package `sklegg-github`.gameobjects
+package sklegg.gameobjects
 
 /**
  * Created by scott on 12/20/16.
@@ -6,11 +6,30 @@ package `sklegg-github`.gameobjects
  */
 abstract class AbstractShip constructor() {
 
+
+    abstract var shipName: String
+    abstract var atomicDetonators: Int
+    abstract var markerBeacons: Int
+    abstract var corbomite: Int
+    abstract var cloakingDevices: Int
+    abstract var armidMines: Int
+    abstract var etherProbes: Int
+    abstract var limpitMines: Int
+    abstract var photonMissiles: Int
+    abstract var hasPlanetScanner: Boolean
+    abstract var numFighters: Int
+    abstract var numHolds: Int
+    abstract var numGenesisTorpedoes: Int
+    abstract var numMineDisruptors: Int
+    abstract var numShields: Int
+    abstract var hasTranswarpDrive: Boolean
+    abstract var hasPsychicProbe: Boolean
+
     abstract val shipType: String
     abstract val purchaseCost: Int
-    /*abstract val maxAtomicDetinators: Int
+    abstract val maxAtomicDetonators: Int
     abstract val maxMarkerBeacons: Int
-    abstract val maxCombrite: Int
+    abstract val maxCorbomite: Int
     abstract val maxCloaking: Int
     abstract val maxEtherProbes: Int
     abstract val planetScanner: Boolean
@@ -32,5 +51,5 @@ abstract class AbstractShip constructor() {
     abstract val maxFightersPerAttack: Int
     abstract val transportRange: Int
     abstract val shipValue: String
-*/
+
 }
