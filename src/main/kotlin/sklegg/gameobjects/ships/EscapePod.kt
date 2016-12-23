@@ -1,16 +1,17 @@
 package sklegg.gameobjects.ships
 
-import sklegg.gameobjects.AbstractShip
+import sklegg.gameobjects.ships.AbstractShip
 
 /**
  * Created by scott on 12/20/16.
  * Escape pod ship
  */
-class EscapePod : AbstractShip() {
+class EscapePod(shipName: String) : AbstractShip() {
 
     /* what are initial values for new ships? */
     /* move to constructor? */
     override var shipName: String = ""
+    override var manufacturer: String = ""
 
     override var atomicDetonators: Int = 0
     override var markerBeacons: Int = 0

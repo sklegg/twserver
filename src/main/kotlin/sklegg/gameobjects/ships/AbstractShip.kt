@@ -1,4 +1,4 @@
-package sklegg.gameobjects
+package sklegg.gameobjects.ships
 
 /**
  * Created by scott on 12/20/16.
@@ -6,8 +6,9 @@ package sklegg.gameobjects
  */
 abstract class AbstractShip constructor() {
 
-
     abstract var shipName: String
+    abstract var manufacturer: String
+
     abstract var atomicDetonators: Int
     abstract var markerBeacons: Int
     abstract var corbomite: Int

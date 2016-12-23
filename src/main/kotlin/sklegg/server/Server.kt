@@ -10,6 +10,6 @@ import sklegg.gameobjects.ships.EscapePod
 fun main(args : Array<String>) {
     println("hello world")
 
-    var testShip = EscapePod()
+    var testShip = EscapePod("Escape Pod")
     println(testShip.toString())
 }
