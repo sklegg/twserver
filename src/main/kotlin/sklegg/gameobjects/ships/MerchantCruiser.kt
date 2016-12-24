@@ -1,7 +1,5 @@
 package sklegg.gameobjects.ships
 
-import sklegg.gameobjects.ships.AbstractShip
-
 /**
  * Created by scott on 12/21/16.
  * Merchant cruiser ship

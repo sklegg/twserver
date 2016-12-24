@@ -1,21 +1,26 @@
 package sklegg.gameobjects
 
+import sklegg.gameobjects.planets.AbstractPlanet
 import sklegg.gameobjects.ships.AbstractShip
 
 /**
  * Created by scott on 12/22/16.
  * One sector in the universe
  */
-class Sector (sectorNumber: Int, regionName: String){
+class Sector (sectorNumber: Int){
     var sectorNumber: Int = 0
     var regionName: String = ""
-    //var port: Port = Port() /* what if there is no port? how to set null or empty? */
-    //var ships: Array<AbstractShip> = Array<AbstractShip>(0)
-    //var warps: Array<Sector> = Array<Sector>(0)
+    var port: Port? = null
+    var ships: Array<AbstractShip> = emptyArray()
+    var warps: Array<Sector> = emptyArray()
+    var planets: Array<AbstractPlanet> = emptyArray()
+    var beacon: Beacon? = null
 
-    // planets
     // mines
-    // beacon
     // fighters
+
+    private fun bag(): String {
+        return this.regionName + this.beacon.toString()
+    }
 
 }
