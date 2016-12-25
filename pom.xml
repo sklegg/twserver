@@ -35,6 +35,13 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.natpryce/konfig -->
+        <dependency>
+            <groupId>com.natpryce</groupId>
+            <artifactId>konfig</artifactId>
+            <version>1.4.2.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
