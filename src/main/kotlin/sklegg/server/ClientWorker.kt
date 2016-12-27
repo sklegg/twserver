@@ -1,11 +1,7 @@
 package sklegg.server
 
 import java.net.Socket
-import com.sun.xml.internal.ws.streaming.XMLStreamWriterUtil.getOutputStream
-import com.sun.xml.internal.ws.streaming.XMLStreamReaderUtil.close
 import java.io.IOException
-
-
 
 /**
  * Created by scott on 12/23/16.
@@ -23,6 +19,8 @@ class ClientWorker (var clientSocket: Socket): Runnable {
             var inputStream = clientSocket.inputStream
             var status: Boolean = true
 
+            val protocol = Protocol()
+
             while (clientSocket.isConnected && status) {
                 var result: ProtocolResult? = null
 
@@ -34,7 +32,7 @@ class ClientWorker (var clientSocket: Socket): Runnable {
                 clientMessage = clientMessage.trim()
                 println(clientMessage)
 
-                result = Protocol().processInputFromClient(clientMessage)
+                result = protocol.processInputFromClient(clientMessage)
                 status = result.status
                 val x = result.message
                 println("ClientWorker - $x")

@@ -8,7 +8,5 @@ import sklegg.gameobjects.UniverseMap
  * Holds global state of the game
  */
 class Game(val map: UniverseMap, val players: Array<Player>) {
-    /* TODO: make this injectable into various game server objects */
-
     /* TODO: figure out persistence. JSON file store or db makes sense */
 }

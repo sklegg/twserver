@@ -35,13 +35,19 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- read config from /resources/ -->
         <!-- https://mvnrepository.com/artifact/com.natpryce/konfig -->
         <dependency>
             <groupId>com.natpryce</groupId>
             <artifactId>konfig</artifactId>
             <version>1.4.2.0</version>
         </dependency>
-
+        <!-- dependency injection -->
+        <dependency>
+            <groupId>com.github.salomonbrys.kodein</groupId>
+            <artifactId>kodein</artifactId>
+            <version>3.1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
