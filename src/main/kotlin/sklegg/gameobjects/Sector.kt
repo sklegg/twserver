@@ -12,7 +12,7 @@ class Sector (sectorNumber: Int){
     var regionName: String = ""
     var port: Port? = null
     var ships: Array<AbstractShip> = emptyArray()
-    var warps: Array<Sector> = emptyArray()
+    var neighbors: Array<Sector> = emptyArray()
     var planets: Array<AbstractPlanet> = emptyArray()
     var beacon: Beacon? = null
 

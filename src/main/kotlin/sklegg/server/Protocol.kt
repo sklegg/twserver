@@ -6,7 +6,7 @@ package sklegg.server
  */
 class Protocol {
 
-    // TODO: make this do something
+    // TODO: inject an object with references to ports, sectors, user accounts, planets, etc.?
     fun processInputFromClient(input: String) : ProtocolResult {
         println("Protocol - input: $input")
 

@@ -13,7 +13,7 @@ class MapCreator {
 
     fun generateNewMap(numSectors: Int): UniverseMap {
         // generate numSectors Sector objects
-        val sectors: Array<Sector> = Array(5, {i -> Sector(i)})
+        val sectors: Array<Sector> = Array(numSectors, {i -> Sector(i)})
 
         // create links between them
         sectors.forEach { s -> randomizeSector(s) }
@@ -24,7 +24,7 @@ class MapCreator {
     }
 
 
-    fun randomizeSector(s: Sector) {
+    private fun randomizeSector(s: Sector) {
         s.port = generateRandomPort()
 
         if (s.sectorNumber <= 11) {
@@ -35,8 +35,8 @@ class MapCreator {
         }
     }
 
-    fun makeSomeWarpsToConnectSectors(sectors: Array<Sector>) {
+    private fun makeSomeWarpsToConnectSectors(sectors: Array<Sector>) {
         /* stub this for now. allow warps to all sectors */
-        sectors.forEach { s -> { s.warps = sectors}}
+        sectors.forEach { s -> run{ s.neighbors = sectors}}
     }
 }
