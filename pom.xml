@@ -12,9 +12,9 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <kotlin.version>1.0.5-3</kotlin.version>
+        <kotlin.version>1.0.5</kotlin.version>
         <junit.version>4.12</junit.version>
-        <main.class>sklegg.server.Server</main.class>
+        <main.class>sklegg.MainKt</main.class>
     </properties>
 
     <dependencies>

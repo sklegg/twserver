@@ -17,7 +17,7 @@ class Server() {
 
     var game: Game? = null
 
-    fun main(args: Array<String>) {
+    fun start() {
         /* TODO: read game state from disk/db instead of generating on startup */
         val gameConfig = getGameConfig()
         game = Game(MapCreator().generateNewMap(gameConfig.numSectors), generateDefaultPlayerArray())
@@ -47,7 +47,7 @@ class Server() {
     private fun generateDefaultPlayerArray() : Array<Player> {
         val defaultPlayer = Player("scott")
         val players: Array<Player> = emptyArray()
-        players[0] = defaultPlayer
+        players.plus(defaultPlayer)
         return players
     }
 }
