@@ -5,4 +5,4 @@ Run the maven compile goal
 
 **Running the server**
 
-Run exec:java -Dexec.mainClass=sklegg.server.ServerKt
+Run exec:java -Dexec.mainClass=sklegg.MainKt

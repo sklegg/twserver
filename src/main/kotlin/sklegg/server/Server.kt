@@ -1,8 +1,8 @@
 package sklegg.server
 
-import com.github.salomonbrys.kodein.Kodein
-import com.github.salomonbrys.kodein.instance
-import com.natpryce.konfig.*
+import com.natpryce.konfig.ConfigurationProperties
+import com.natpryce.konfig.Key
+import com.natpryce.konfig.intType
 import sklegg.bigbang.MapCreator
 import sklegg.game.Game
 import sklegg.game.GameConfig
@@ -21,15 +21,12 @@ class Server() {
 
         /* TODO: read game state from disk/db instead of generating on startup */
         val gameConfig = getGameConfig()
-        var game = Game(MapCreator().generateNewMap(gameConfig.numSectors), generateDefaultPlayerArray())
+        val game = Game(MapCreator().generateNewMap(gameConfig.numSectors), generateDefaultPlayerArray())
 
-        /* prepare DI bindings */
-        val kodein = Kodein {
-            bind<Game>("gameDI") with instance(game)
-        }
+        println("Server - sector length = " + game.map.sectors.size)
 
         readServerConfig()
-        val connections = ClientConnectionThread(port!!, threads!!)
+        val connections = ClientConnectionThread(port!!, threads!!, game)
 
         print("Starting server on port $port with $threads threads.    ")
         Thread(connections).start()

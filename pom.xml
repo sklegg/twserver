@@ -42,11 +42,18 @@
             <artifactId>konfig</artifactId>
             <version>1.4.2.0</version>
         </dependency>
-        <!-- dependency injection -->
+        <!-- dependency injection
         <dependency>
             <groupId>com.github.salomonbrys.kodein</groupId>
             <artifactId>kodein</artifactId>
             <version>3.1.0</version>
+        </dependency>
+        -->
+        <!-- JSON -->
+        <dependency>
+            <groupId>com.github.salomonbrys.kotson</groupId>
+            <artifactId>kotson</artifactId>
+            <version>2.3.0</version>
         </dependency>
     </dependencies>
 

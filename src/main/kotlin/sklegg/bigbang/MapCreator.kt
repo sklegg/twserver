@@ -1,7 +1,6 @@
 package sklegg.bigbang
 
 import sklegg.gameobjects.Beacon
-import sklegg.gameobjects.Port
 import sklegg.gameobjects.Sector
 import sklegg.gameobjects.UniverseMap
 
@@ -18,7 +17,11 @@ class MapCreator {
         // create links between them
         sectors.forEach { s -> randomizeSector(s) }
         makeSomeWarpsToConnectSectors(sectors)
+        println("MapCreator - start")
+        println(sectors)
 
+        println(sectors.size)
+        println("MapCreator - end")
         // add to UniverseMap
         return UniverseMap(sectors)
     }

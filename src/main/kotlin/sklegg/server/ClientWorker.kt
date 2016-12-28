@@ -1,53 +1,39 @@
 package sklegg.server
 
-import java.net.Socket
+import sklegg.game.Game
 import java.io.IOException
+import java.net.Socket
 
 /**
  * Created by scott on 12/23/16.
  * Communicates between Socket and game Protocol
  */
-class ClientWorker (var clientSocket: Socket): Runnable {
-
-    init {
-        println("Created ClientWorker")
-    }
+class ClientWorker (var clientSocket: Socket, var game: Game): Runnable {
 
     override fun run() {
         try {
 
-            var inputStream = clientSocket.inputStream
+            val inputStream = clientSocket.inputStream
             var status: Boolean = true
 
-            val protocol = Protocol()
+            val protocol = Protocol(game)
 
             while (clientSocket.isConnected && status) {
-                var result: ProtocolResult? = null
+                var result: ProtocolResult?
 
-                var inputBytes: ByteArray = ByteArray(128)
+                val inputBytes: ByteArray = ByteArray(36)
                 inputStream.read(inputBytes)
-                var inputSize = inputBytes.size
-                println("read $inputSize bytes")
-                var clientMessage = kotlin.text.String(inputBytes)
-                clientMessage = clientMessage.trim()
-                println(clientMessage)
+                val clientMessage = kotlin.text.String(inputBytes)
 
                 result = protocol.processInputFromClient(clientMessage)
                 status = result.status
                 val x = result.message
-                println("ClientWorker - $x")
+                println("ClientWorker - message: $x")
                 val y = clientSocket.isConnected
-                println("ClientWorker - isConnected? $y")
+                println("ClientWorker - clientSocket.isConnected? $y")
+                clientSocket.outputStream.write(result.message.toByteArray())
             }
 
-            /* read all of clients message at once. Kotlin is Kool */
-            //val clientMessage = clientSocket.inputStream.bufferedReader().use { it.readText() }
-            //println("ClientWorker - rec'd from client: $clientMessage")
-
-            /* now let the Protocol handle the request */
-            //clientSocket.outputStream.bufferedWriter().write(Protocol().processInputFromClient(clientMessage))
-
-            /*output.close()*/
             inputStream.close()
 
             println("ClientWorker - socket closed. logout or protocol error")

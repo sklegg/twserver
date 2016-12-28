@@ -1,9 +1,10 @@
 package sklegg.server
 
-import java.net.ServerSocket
-import java.util.concurrent.Executors
+import sklegg.game.Game
 import java.io.IOException
+import java.net.ServerSocket
 import java.net.Socket
+import java.util.concurrent.Executors
 
 
 /**
@@ -11,7 +12,7 @@ import java.net.Socket
  * Runnable for managing client connections
  */
 
-class ClientConnectionThread (val serverPort: Int, val numConnections: Int) : Runnable {
+class ClientConnectionThread (val serverPort: Int, numConnections: Int, var game: Game) : Runnable {
     var serverSocket: ServerSocket? = null
     var stopping: Boolean = false
     var runningThread: Thread? = null
@@ -19,6 +20,7 @@ class ClientConnectionThread (val serverPort: Int, val numConnections: Int) : Ru
 
     init {
         println("Created ClientConnectionThread")
+        println("ClientConnectionThread - sector length = " + game.map.sectors.size)
     }
 
     override fun run() {
@@ -43,7 +45,7 @@ class ClientConnectionThread (val serverPort: Int, val numConnections: Int) : Ru
                 throw RuntimeException("Error accepting client connection", ex)
             }
 
-            this.threadPool.execute(ClientWorker(clientSocket))
+            this.threadPool.execute(ClientWorker(clientSocket, game))
         }
 
         this.threadPool.shutdown()
