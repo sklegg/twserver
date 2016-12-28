@@ -1,16 +1,22 @@
 package sklegg.gameobjects
 
+import com.github.salomonbrys.kotson.toJson
+import com.google.gson.JsonObject
+
 /**
  * Created by scott on 12/22/16.
  * Lives in a sector and trades resources
  */
 
-class Port (portName: String, portClass: Int){
-    var portName: String = ""
-    var portClass: Int = 0
+class Port (var portName: String, var portClass: Int){
     var tradingLog: String = ""
 
-
+    fun toJson(): JsonObject {
+        val result = JsonObject()
+        result.add("portName",  portName.toJson())
+        result.add("portClass", portClass.toJson())
+        return result
+    }
 
  /* (BBS) - buying fuel ore, buying organics, selling equipment
     (BSB) - buying fuel ore, selling organics, buying equipment

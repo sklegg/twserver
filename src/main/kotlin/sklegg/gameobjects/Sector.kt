@@ -1,5 +1,6 @@
 package sklegg.gameobjects
 
+import com.github.salomonbrys.kotson.jsonArray
 import com.github.salomonbrys.kotson.toJson
 import com.google.gson.JsonObject
 import sklegg.gameobjects.planets.AbstractPlanet
@@ -13,7 +14,7 @@ class Sector (var sectorNumber: Int){
     var regionName: String = ""
     var port: Port? = null
     var ships: Array<AbstractShip> = emptyArray()
-    var neighbors: Array<Sector> = emptyArray()
+    var neighbors: Array<Int> = emptyArray()
     var planets: Array<AbstractPlanet> = emptyArray()
     var beacon: Beacon? = null
 
@@ -24,7 +25,9 @@ class Sector (var sectorNumber: Int){
         val result = JsonObject()
         result.add("id", sectorNumber.toJson())
         result.add("name", regionName.toJson())
-        //result.add("neighbors", jsonArray(neighbors))
+        result.add("beacon", beacon!!.toJson())
+        result.add("neighbors", jsonArray(neighbors.asSequence()))
+        result.add("port", port?.toJson())
         return result.toString()
     }
 }
