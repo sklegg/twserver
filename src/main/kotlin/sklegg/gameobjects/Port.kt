@@ -10,11 +10,21 @@ import com.google.gson.JsonObject
 
 class Port (var portName: String, var portClass: Int){
     var tradingLog: String = ""
+    val id = java.util.UUID.randomUUID()
+    /* TODO: does that actually work? */
 
     fun toJson(): JsonObject {
         val result = JsonObject()
+        result.add("type","PORT".toJson())
+        result.add("id", id.toString().toJson())
         result.add("portName",  portName.toJson())
         result.add("portClass", portClass.toJson())
+        result.add("sellsFuel", this.sellsFuel().toJson())
+        result.add("buysFuel", this.buysFuel().toJson())
+        result.add("sellsOrganics", this.sellsOrganics().toJson())
+        result.add("buysOrganics", this.buysOrganics().toJson())
+        result.add("sellsEquipment", this.sellsEquipment().toJson())
+        result.add("buysEquipment", this.buysEquipment().toJson())
         return result
     }
 

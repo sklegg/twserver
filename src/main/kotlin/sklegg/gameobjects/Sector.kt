@@ -23,6 +23,7 @@ class Sector (var sectorNumber: Int){
 
     fun serialize(): String {
         val result = JsonObject()
+        result.add("type", "SECTOR".toJson())
         result.add("id", sectorNumber.toJson())
         result.add("name", regionName.toJson())
         result.add("beacon", beacon!!.toJson())
