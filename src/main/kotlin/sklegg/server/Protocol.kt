@@ -16,11 +16,18 @@ class Protocol(var game: Game) {
 
         if ("sector" == commandParts[0]) {
             /* send sector info */
+            /* TODO: read sector number from command */
             val sector = game.map.sectors[2]
             return ProtocolResult(true, sector.serialize())
         } else if ("port" == commandParts[0]) {
             /* send port info */
-            return ProtocolResult(true, "info about a port")
+            /* TODO: read sector number from command */
+            val port = game.portsBySector[2]
+            if (port != null) {
+                return ProtocolResult(true, port.serialize())
+            } else {
+                return ProtocolResult(false, "Port not found in sector 2")
+            }
         } else if ("init" == commandParts[0]) {
             /* log in */
             return ProtocolResult(true, "acknowledge login")

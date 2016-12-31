@@ -24,7 +24,7 @@ class MapCreator {
     }
 
     private fun randomizeSector(s: Sector) {
-        s.port = generateRandomPort()
+        s.port = generateRandomPort(s.sectorNumber)
 
         if (s.sectorNumber <= 10) {
             s.beacon = Beacon("FedSpace: All Federation Rules Apply")

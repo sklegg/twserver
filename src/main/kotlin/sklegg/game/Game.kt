@@ -9,5 +9,4 @@ import sklegg.gameobjects.UniverseMap
  */
 class Game(var map: UniverseMap, val players: Array<Player>) {
     /* TODO: figure out persistence. JSON file store or db makes sense */
-
 }

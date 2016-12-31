@@ -8,15 +8,21 @@ import com.google.gson.JsonObject
  * Lives in a sector and trades resources
  */
 
-class Port (var portName: String, var portClass: Int){
+class Port (var sectorNumber: Int, var portName: String, var portClass: Int){
     var tradingLog: String = ""
-    val id = java.util.UUID.randomUUID()
-    /* TODO: does that actually work? */
+
+    val maxFuel: Int = 880
+    val maxOrganics: Int = 1630
+    val maxEquipment: Int = 1620
+
+    var currentFuel = maxFuel
+    var currentOrganics = maxOrganics
+    var currentEquipment = maxEquipment
 
     fun toJson(): JsonObject {
         val result = JsonObject()
         result.add("type","PORT".toJson())
-        result.add("id", id.toString().toJson())
+        result.add("id", sectorNumber.toJson())
         result.add("portName",  portName.toJson())
         result.add("portClass", portClass.toJson())
         result.add("sellsFuel", this.sellsFuel().toJson())
