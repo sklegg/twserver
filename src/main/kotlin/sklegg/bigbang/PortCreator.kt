@@ -8,11 +8,16 @@ import java.util.concurrent.ThreadLocalRandom
  * Generates a random port
  */
 fun generateRandomPort(sectorNumber: Int): Port {
-    // randomize name
-    var randomName: String = "name"
-
     // randomize class
-    var randomPortClass: Int = ThreadLocalRandom.current().nextInt(1, 9);
+    var randomPortClass: Int = ThreadLocalRandom.current().nextInt(1, 9)
 
-    return Port(sectorNumber, randomName, randomPortClass)
+    return Port(sectorNumber, generatePortName(), randomPortClass)
+}
+
+fun generatePortName(): String {
+    val names = arrayOf("Bourbon","Kirk","Turkington","Roast Beef", "Zero Cool", "Crash Override", "Acid Burn")
+    var suffix = arrayOf("Annex", "III", "Prime", "Nova", "Tactical", "Major", "One")
+    val randomNameIndex = ThreadLocalRandom.current().nextInt(1, names.size)
+    val randomSuffixIndex = ThreadLocalRandom.current().nextInt(1, names.size)
+    return names[randomNameIndex] + " " + suffix[randomSuffixIndex]
 }

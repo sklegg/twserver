@@ -1,6 +1,7 @@
 package sklegg.server
 
 import sklegg.game.Game
+import sklegg.server.command.Command
 
 /**
  * Created by scott on 12/24/16.
@@ -11,38 +12,29 @@ class Protocol(var game: Game) {
     fun processInputFromClient(input: String) : ProtocolResult {
         println("Protocol - input: $input")
 
-        val commandParts = getCommandParts(input)
-        printCommandList(commandParts)
+        val command = Command(input)
 
-        if ("sector" == commandParts[0]) {
+        if ("sector" == command.getCommandType()) {
             /* send sector info */
-            /* TODO: read sector number from command */
-            val sector = game.map.sectors[2]
+            val sectorNumber = command.getSectorNumber()
+            val sector = game.map.sectors[sectorNumber]
             return ProtocolResult(true, sector.serialize())
-        } else if ("port" == commandParts[0]) {
+        } else if ("port" == command.getCommandType()) {
             /* send port info */
-            /* TODO: read sector number from command */
-            val port = game.portsBySector[2]
+            val sectorNumber = command.getSectorNumber()
+            val port = game.map.sectors[sectorNumber].port
             if (port != null) {
                 return ProtocolResult(true, port.serialize())
             } else {
                 return ProtocolResult(false, "Port not found in sector 2")
             }
-        } else if ("init" == commandParts[0]) {
+        } else if ("init" == command.getCommandType()) {
             /* log in */
             return ProtocolResult(true, "acknowledge login")
-        } else if ("user" == commandParts[0]) {
+        } else if ("user" == command.getCommandType()) {
             return ProtocolResult(true, "info about a player")
         }
+
         return ProtocolResult(false, "Protocol Error.")
-    }
-
-    /* TODO: move to new command class */
-    private fun getCommandParts(command: String) : List<String> {
-        return command.split(':')
-    }
-
-    private fun printCommandList(list: List<String>) {
-        list.forEach { n -> println(n)}
     }
 }

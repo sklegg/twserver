@@ -26,7 +26,7 @@ class Sector (var sectorNumber: Int){
         result.add("type", "SECTOR".toJson())
         result.add("id", sectorNumber.toJson())
         result.add("name", regionName.toJson())
-        result.add("beacon", beacon!!.toJson())
+        result.add("beacon", beacon?.toJson())
         result.add("neighbors", jsonArray(neighbors.asSequence()))
         result.add("port", port?.toJson())
         return result.toString()

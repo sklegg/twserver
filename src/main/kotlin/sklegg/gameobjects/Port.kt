@@ -19,6 +19,8 @@ class Port (var sectorNumber: Int, var portName: String, var portClass: Int){
     var currentOrganics = maxOrganics
     var currentEquipment = maxEquipment
 
+
+
     fun toJson(): JsonObject {
         val result = JsonObject()
         result.add("type","PORT".toJson())
@@ -32,6 +34,10 @@ class Port (var sectorNumber: Int, var portName: String, var portClass: Int){
         result.add("sellsEquipment", this.sellsEquipment().toJson())
         result.add("buysEquipment", this.buysEquipment().toJson())
         return result
+    }
+
+    fun serialize() : String {
+        return toJson().toString()
     }
 
  /* (BBS) - buying fuel ore, buying organics, selling equipment
