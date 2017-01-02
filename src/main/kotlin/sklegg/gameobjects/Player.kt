@@ -12,4 +12,8 @@ class Player (var playerName: String = "", var alignment: Int = 0){
     var lastLogin: Date? = null
     var numTurns: Int = 0
     var experience: Int = 0
+
+    fun serialize() : String {
+        return "{}"
+    }
 }

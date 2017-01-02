@@ -26,7 +26,7 @@ class Command(val commandString: String) {
         return commandParts[SECTOR].toInt()
     }
 
-    private fun getCommandParts() : List<String> {
+    fun getCommandParts() : List<String> {
         return commandParts
     }
 

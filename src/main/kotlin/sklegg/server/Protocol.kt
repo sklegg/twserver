@@ -32,7 +32,9 @@ class Protocol(var game: Game) {
             /* log in */
             return ProtocolResult(true, "acknowledge login")
         } else if ("user" == command.getCommandType()) {
-            return ProtocolResult(true, "info about a player")
+            val playerId = command.getCommandParts()[2]
+            val player = game.players[playerId.toInt()]
+            return ProtocolResult(true, player.serialize())
         }
 
         return ProtocolResult(false, "Protocol Error.")

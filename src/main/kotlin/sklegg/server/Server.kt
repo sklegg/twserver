@@ -12,7 +12,7 @@ import sklegg.gameobjects.Player
  * Created by scott on 12/21/16.
  * Server application entry point
  */
-class Server() {
+class Server {
     /* TODO: clean this up and make null-safe */
     private var port: Int? = null
     private var threads: Int? = null
